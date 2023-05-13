@@ -2,19 +2,59 @@
 //Задача 1. Перемещение объектов
 
 #include <iostream>
+#include <string>
+#include <vector>
+
+template<class T>
+void move_vectors(T& one, T& two)
+{
+    T _Tmp = one;
+    one = two;
+    two = _Tmp;
+};
+
+template<class T>
+void print_vectors(std::vector<T>& any)
+{
+    for (const auto& i : any)
+    {
+        std::cout << i << '\t';
+    }
+    std::cout << std::endl;
+};
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    std::vector <std::string> one = { "test_string1", "test_string2" };
+    std::vector <std::string> two;
+
+    std::cout << "std::string one before\t";
+    print_vectors(one);
+    std::cout << "std::string two before\t";
+    print_vectors(two);
+
+    move_vectors(one,two);
+    
+    std::cout << "std::string one after\t";
+    print_vectors(one);
+    std::cout << "std::string two after\t";
+    print_vectors(two);
+
+    std::vector <int> three = { 1,2,3,4,5 };
+    std::vector <int> four;
+
+    std::cout << "int one before\t";
+    print_vectors(three);
+    std::cout << "int two before\t";
+    print_vectors(four);
+
+    move_vectors(three, four);
+
+    std::cout << "int one after\t";
+    print_vectors(three);
+    std::cout << "int two after\t";
+    print_vectors(four);
+
+    std::cout << "\n\nHello World!\n";
 }
-
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
-
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
