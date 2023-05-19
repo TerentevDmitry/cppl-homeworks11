@@ -21,11 +21,11 @@ public:
 	{ std::cout << this << " Constructor BigInteger(T value)\n"; };
 
 	////Copy Constructor
-	//BigInteger(const BigInteger& other)
-	//{ 
-	//	bigInteger_ = other.bigInteger_;
-	//	std::cout << this << " Copy Constructor\n"; 
-	//};
+	BigInteger(const BigInteger& other)
+	{ 
+		bigInteger_ = other.bigInteger_;
+		std::cout << this << " Copy Constructor\n"; 
+	};
 
 	//// Copy as Constructor=
 	//std::string& operator=(const BigInteger& other)
@@ -34,7 +34,6 @@ public:
 	//	std::cout << this << " Перегрузка оператора +\n";
 	//	//return this;
 	//};
-
 
 	////Move Constructor
 	//BigInteger(BigInteger&& other) noexcept
@@ -108,8 +107,14 @@ public:
 			bigInteger_.push_back(k);
 		}
 
-		std::cout << this << " operator +\n";
+		//std::cout << this << " operator +";
 		return std::move(bigInteger_);
+	};
+
+	std::ostream& operator<<(std::ostream& out)
+	{
+		
+		return out << bigInteger_;
 	};
 
 	size_t getSize() { return size_; }
