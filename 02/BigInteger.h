@@ -5,6 +5,7 @@
 #include <string>
 #include <charconv>
 #include <math.h>
+#include <algorithm>
 
 class BigInteger
 {
@@ -21,19 +22,27 @@ public:
 	{ std::cout << this << " Constructor BigInteger(T value)\n"; };
 
 	////Copy Constructor
-	BigInteger(const BigInteger& other)
+	BigInteger(const BigInteger& other) : bigInteger_{ other.bigInteger_ }, result_{ other.result_ }, size_{other.size_}
 	{ 
-		bigInteger_ = other.bigInteger_;
-		std::cout << this << " Copy Constructor\n"; 
+		std::cout << this << " Copy Constructor\n";
 	};
 
-	//// Copy as Constructor=
-	//std::string& operator=(const BigInteger& other)
-	//{
-	//	//int sum = this->bigInteger_ + other.bigInteger_;
-	//	std::cout << this << " Перегрузка оператора +\n";
-	//	//return this;
-	//};
+	// Copy as Constructor=
+	BigInteger& operator=(const BigInteger& other)
+	{
+		if (this != &other) // not a self-assignment
+		{
+			if (size_ != other.size_) // resource cannot be reused
+			{
+				
+			}
+			bigInteger_ = other.bigInteger_;
+			result_ = other.result_;
+			size_ = other.size_;
+		}
+		std::cout << this << " Copy Assignment Constructor\n";
+		return *this;
+	};
 
 	////Move Constructor
 	//BigInteger(BigInteger&& other) noexcept
