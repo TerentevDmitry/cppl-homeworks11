@@ -5,20 +5,10 @@
 
 int main()
 {
-    
-    //auto number1 = BigInteger("812");
-
-    //auto number2 = BigInteger("348");
-
-    auto number1 = BigInteger("116666666664575");
-
-    auto number2 = BigInteger("111178524");
-
-    auto result = number0 + number3;
-    std::cout << "193099 55 = number1 + number2 = " << result; // 193099
-
+    auto number1 = BigInteger("114575");
+    auto number2 = BigInteger("78524");
 
     auto result = number1 + number2;
     std::cout << result << std::endl; // 193099
-    std::cout << "116666777843099";
+    std::cout << "193099";
 }
