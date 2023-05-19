@@ -51,25 +51,26 @@ public:
 
 		//равняем по размеру и вставляем в начало '0' для соблюдения разрядности
 		if (size_ > other.size_)
-		{ 
+		{
 			other.size_ = size_;
-			other.result_.reserve(size_); //резерв места в векторе 
 			auto it = other.bigInteger_.begin();
 			for (int i = 0; i < deltaSize; i++)
 			{
 				other.bigInteger_.insert(it, '0');
 			}
-		} else
+		}
+		else
 		{
 			size_ = other.size_;
-			result_.reserve(size_); //резерв места в векторе
 			auto it = bigInteger_.begin();
 			for (int i = 0; i < deltaSize; i++)
 			{
 				bigInteger_.insert(it, '0');
 			}
 		}
-		
+
+		result_.reserve(size_ + 1); //резерв места в векторе
+		other.result_.reserve(size_ + 1); //резерв места в векторе
 
 		int j = static_cast<int>(size_);
 		int h = 0;
@@ -80,6 +81,14 @@ public:
 			if (result_[h] < 0)
 				result_[h] = 0;
 		}
+
+		//проверка необходимости добавить еще разряд вверху
+		if (result_[static_cast<int>(size_) - 1] >= 9)
+		{
+			j = static_cast<int>(size_) + 1;
+			result_.push_back(0);
+		}
+		
 		//переносим десятки на разряд выше
 		for (size_t i = 0; i < size_; i++)
 		{
@@ -91,7 +100,7 @@ public:
 		}
 
 		bigInteger_.clear(); //чистим массив стрингов и пишем туда ответ
-
+		
 		j = static_cast<int>(size_);
 		for (--j; j >= 0; --j)
 		{
