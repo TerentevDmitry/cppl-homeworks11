@@ -111,11 +111,7 @@ public:
 		return std::move(bigInteger_);
 	};
 
-	std::ostream& operator<<(std::ostream& out)
-	{
-		
-		return out << bigInteger_;
-	};
+	friend std::ostream& operator<< (std::ostream& out, const BigInteger& point);
 
 	size_t getSize() { return size_; }
 
