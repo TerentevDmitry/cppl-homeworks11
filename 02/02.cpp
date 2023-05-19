@@ -6,9 +6,9 @@
 int main()
 {
     auto number1 = BigInteger("114575");
-    auto number2 = BigInteger("78524");
+    auto number2 = BigInteger("89999978524");
 
     auto result = number1 + number2;
-    std::cout << result << std::endl; // 193099
+    std::cout << result << std::endl;
     std::cout << "193099";
 }
