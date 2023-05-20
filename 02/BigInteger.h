@@ -27,30 +27,41 @@ public:
 		std::cout << this << " Copy Constructor\n";
 	};
 
-	// Copy as Constructor=
+	// Copy assignment Constructor=
 	BigInteger& operator=(const BigInteger& other)
 	{
 		if (this != &other) // not a self-assignment
 		{
-			if (size_ != other.size_) // resource cannot be reused
-			{
-				
-			}
 			bigInteger_ = other.bigInteger_;
 			result_ = other.result_;
 			size_ = other.size_;
+			std::cout << this << " Copy Assignment Constructor\n";
 		}
-		std::cout << this << " Copy Assignment Constructor\n";
 		return *this;
 	};
 
-	////Move Constructor
-	//BigInteger(BigInteger&& other) noexcept
-	//{ 
-	//	bigInteger_ = other.bigInteger_;
-	//	other.~BigInteger();
-	//	std::cout << this << " Move Constructor\n"; 
-	//};
+	//Move Constructor
+	BigInteger(BigInteger&& other) noexcept : bigInteger_{ std::move(other.bigInteger_) }, result_{ std::move(other.result_) }, size_{ std::move(other.size_) }
+	{ 
+		other.result_.clear();
+		other.bigInteger_.clear();
+		other.size_ = 0;
+		std::cout << this << " Move Constructor\n"; 
+	};
+
+	// Move assignment Constructor=
+	BigInteger& operator=(BigInteger&& other) noexcept
+	{
+		if (this != &other) // not a self-assignment
+		{
+			bigInteger_ = std::move(other.bigInteger_);
+			result_ = std::move(other.result_);
+			size_ = other.size_;
+			other.size_ = 0;
+			std::cout << this << " Move Assignment Constructor\n";
+		}
+		return *this;
+	};
 
 	std::string operator+(BigInteger& other)
 	{
@@ -91,7 +102,7 @@ public:
 		}
 
 		//проверка необходимости добавить еще разряд вверху
-		if (result_[static_cast<int>(size_) - 1] >= 9)
+		if (result_[static_cast<int>(size_) - static_cast<int>(1)] >= 9)
 		{
 			j = static_cast<int>(size_) + 1;
 			result_.push_back(0);
@@ -117,12 +128,15 @@ public:
 		}
 
 		//std::cout << this << " operator +";
-		return std::move(bigInteger_);
+		return bigInteger_;
 	};
 
 	friend std::ostream& operator<< (std::ostream& out, const BigInteger& point);
 
 	size_t getSize() { return size_; }
 
-	~BigInteger() { std::cout << '\n' << this << " Destructor BigInteger()"; };
+	~BigInteger() 
+	{
+		std::cout << '\n' << this << " Destructor BigInteger()"; 
+	};
 };
