@@ -5,11 +5,21 @@
 
 int main()
 {
-    auto number1 = BigInteger("114575");
-    auto number2 = BigInteger("9998524");
+    auto number1 = BigInteger("5");
+    auto number2 = BigInteger("6");
 
-    auto result = number1 + number2;
-    std::cout << result;
+    auto resultSum = number1 + number2;
+    std::cout << std::endl << "sum = " << resultSum << std::endl;
+
+    number1 = BigInteger("5");
+    number2 = BigInteger("6");
+
+    auto resultMultiplication = number1 * number2;
+    std::cout << std::endl << "multiplication = " << resultMultiplication << std::endl;
+
+
+
+
 
     auto number3(number2);
     std::cout << number2 << " & " << number3 << std::endl;
